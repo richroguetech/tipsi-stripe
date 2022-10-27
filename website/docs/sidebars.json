@@ -1,0 +1,57 @@
+{
+  "docs": {
+    "Overview": [
+      "index",
+      "compatibility",
+      "installation",
+      "linking",
+      "running-apple-pay-on-a-real-device",
+      "google-pay",
+      "usage",
+      "example",
+      "paymentIntents",
+      "createCardOrSubscription",
+      "migrationIssues",
+      "changelog"
+    ],
+    "Objects": [
+      "token",
+      "source",
+      "paymentMethod"
+    ],
+    "Native Pay -  & G": [
+      "canMakeNativePayPayments",
+      "deviceSupportsNativePay",
+      "potentiallyAvailableNativePayNetworks",
+      "completeNativePayRequest",
+      "cancelNativePayRequest"
+    ],
+    "Card Form": ["paymentrequestwithcardform"],
+    "Card Params Object": ["createtokenwithcard"],
+    "Bank Account Params Object": ["createtokenwithbankaccount"],
+    "Create Source Object With Params": ["createsourcewithparamsparams"],
+    "Components": ["paymentcardtextfield"],
+    "Error Codes": ["errorcodes"],
+    "Tests": [
+      "tests-local-ci",
+      "tests-manual"
+    ],
+    "Troubleshooting": [
+      "troubleshooting-android",
+      "troubleshooting-jest",
+      "troubleshooting-tests",
+      "troubleshooting-useframeworks-issue"
+    ],
+    "Deprecated Docs": [
+      "openapplepaysetup",
+      "deviceSupportsApplePay",
+      "devicesupportsandroidpay",
+      "canmakeandroidpaypayments",
+      "canmakeapplepaypaymentsoptions",
+      "paymentrequestwithandroidpay",
+      "paymentrequestwithapplepayitemsoptions",
+      "completeapplepayrequest",
+      "cancelapplepayrequest"
+    ]
+  }
+}
