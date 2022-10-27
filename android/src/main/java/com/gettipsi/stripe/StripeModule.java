@@ -1,5 +1,6 @@
 package com.gettipsi.stripe;
 
+import java.util.HashMap;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import com.google.android.gms.wallet.WalletConstants;
 import com.stripe.android.ApiResultCallback;
 import com.stripe.android.AppInfo;
 import com.stripe.android.PaymentIntentResult;
+import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.SetupIntentResult;
 import com.stripe.android.ApiResultCallback;
 import com.stripe.android.Stripe;
@@ -144,6 +146,8 @@ public class StripeModule extends ReactContextBaseJavaModule {
       Stripe.setAppInfo(AppInfo.create(APP_INFO_NAME, APP_INFO_VERSION, APP_INFO_URL));
       mStripe = new Stripe(getReactApplicationContext(), mPublicKey);
       getPayFlow().setPublishableKey(mPublicKey);
+
+      PaymentConfiguration.init(getReactApplicationContext(), mPublicKey);
     }
 
     if (newAndroidPayMode != null) {
@@ -203,7 +207,6 @@ public class StripeModule extends ReactContextBaseJavaModule {
 
       mStripe.createCardToken(
         createCard(cardData),
-        mPublicKey,
         new ApiResultCallback<Token>() {
           public void onSuccess(Token token) {
             promise.resolve(convertTokenToWritableMap(token));
@@ -415,6 +418,12 @@ public class StripeModule extends ReactContextBaseJavaModule {
   public void createSourceWithParams(final ReadableMap options, final Promise promise) {
 
     SourceParams sourceParams = extractSourceParams(options);
+
+    try {
+      ReadableMap metadata = options.getMap("metadata");
+      HashMap<String, String> newMap = new HashMap(metadata.toHashMap());
+      sourceParams.setMetaData(newMap);
+    } catch (Exception e) {}
 
     ArgCheck.nonNull(sourceParams);
 
